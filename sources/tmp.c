@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:58:49 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/10 15:01:37 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:20:49 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	print_stack_content(t_stack *stacks)
 		if (current_b)
 			printf("current---------->%p\n", (long long int *)current_a);
 		if (current_a)
-			printf("next------------>%p\n\n", (long long int *)current_a->next);
+			printf("next------------>%p\n\n", (long long int **)current_a->next);
 		if (current_b)
-			printf("next------------>%p\n\n", (long long int *)current_b->next);
+			printf("next------------>%p\n\n", (long long int **)current_b->next);
 		if (current_a && current_a->next != stacks->top_a)
 			current_a = current_a->next;
 		if (current_b && current_b->next != stacks->top_b)

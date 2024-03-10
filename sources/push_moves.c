@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 11:52:47 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/10 15:07:34 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:16:47 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	pb(t_stack *stacks)
     stacks->top_a = stacks->stack_a;
     stacks->stack_b->next = NULL;
     stacks->stack_b->prev = NULL;
-    // stacks->top_b = stacks->stack_b;
     printf ("stack b : %p  ", stacks->stack_b);
+    // stacks->top_b = stacks->stack_b;
 	write(1, "pb\n", 3);
 }
