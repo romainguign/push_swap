@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:18:10 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/14 17:37:53 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:42:58 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,52 +80,6 @@ int	is_sorted(t_list *stack)
 		stack = stack->next;
 	}
 	return (1);
-}
-
-int		count_nbr(t_list *stack_from, t_list *stack_to, int count, int element_nbr)
-{
-	int	size_from;
-	int	size_to;
-
-	size_from = ft_lstsize(stack_from);
-	size_to = ft_lstsize(stack_to);
-	if (size_to == 2)
-	{
-		if (stack_from->type == 1)
-			element_nbr = size_from - element_nbr;
-		count = element_nbr + count + 1;
-	}
-	else if (stack_from->type == 1 && stack_from->target->type == 1 || stack_from->type == 3
-		&&  stack_from->target->type == 1 || stack_from->type == 1 &&  stack_from->target->type == 3)
-	{
-		printf ("TYPE choosen : %d\n", 1);
-		printf ("element_nbr : %d count : %d\n", element_nbr, count);
-		if (count < element_nbr)
-			count = size_to - count + 1;
-		else
-			count = size_from - element_nbr + 1;
-	}
-	else if (stack_from->type == 2 && stack_from->target->type == 2 || stack_from->type == 3
-		&&  stack_from->target->type == 2 || stack_from->type == 2 &&  stack_from->target->type == 3)
-	{
-		printf ("TYPE choosen : %d\n", 2);
-		if (count < element_nbr)
-			count = (element_nbr + 1);
-		else
-			count = count + 1;
-			// printf ("element_nbr : %d count : %d\n", element_nbr, count);
-	}
-	else
-	{
-		printf ("TYPE choosen : %d\n", 3);
-		if (stack_from->type == 1)
-			element_nbr = size_from - element_nbr;
-		if (stack_from->type == 1)
-			count = size_to - count;
-		printf ("element_nbr : %d count : %d\n", element_nbr, count);
-		count = element_nbr + count + 1;
-	}
-	return (count);
 }
 
 int	calc_mediane(t_list *stack)

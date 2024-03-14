@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:08:27 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/14 18:42:34 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/14 20:32:27 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,45 +60,68 @@ int		find_target_b(t_list *stack_from, t_list *stack_to, t_list *top_to)
 	return (count);
 }
 
-int	calc_count_b(t_list *stack_from, t_list *stack_to, int size_from, int element_nbr)
-{
-	int	target_nb;
-	int	size_to;
-	t_list	*top_to;
-	int	best_count;
+// int		calc_count_b(t_list *stack_from, t_list *stack_to, int size_from, int element_nbr)
+// {
+// 	int	count;
+// 	int	size_to;
+// 	t_list	*top_to;
 
+// 	top_to = stack_to;
+// 	size_to = ft_lstsize(stack_to);
+// 	count = find_target_b(stack_from, stack_to, top_to);
+// 	printf("current count : %d\n", count);
+// 	if (element_nbr + 1 > (size_from / 2) && (count > size_to / 2))
+// 	{
+// 		stack_from->type = 1;
+// 		count = count_nbr(stack_from, stack_to, 1, size_to - count, size_from - element_nbr);
+// 		printf("caca count : %d element nbr %d\n", count, element_nbr);
+// 	}
+// 	else if (element_nbr + 1 <= size_from / 2 && count + 1 <= size_to / 2)
+// 	{
+// 		stack_from->type = 2;
+// 		count = count_nbr(stack_from, stack_to, 2,count, element_nbr);
+// 		printf("pipi count : %d element nbr %d\n", count, element_nbr);
+// 	}
+// 	else
+// 	{
+// 		stack_from->type = 3;
+// 		count = count_nbr(stack_from, stack_to, 3, count, element_nbr);
+// 		printf("testicules count : %d element nbr %d\n", count, element_nbr);
+// 	}
+// 	return (count);
+// }
+
+int		calc_count_b(t_list *stack_from, t_list *stack_to, int size_from, int element_nbr)
+{
+	int	count;
+	int	size_to;
+	int	mediane_from;
+	int	mediane_to;
+	t_list	*top_to;
+
+	mediane_from = calc_mediane(stack_from);
+	mediane_to = calc_mediane(stack_to);
 	top_to = stack_to;
 	size_to = ft_lstsize(stack_to);
-	target_nb = find_target_b(stack_from, stack_to, top_to);
-	best_count = element_nbr + target_nb + 1;
-	stack_from->type = 3;
-	if (element_nbr <= target_nb)
-	{
-		if (best_count > size_from - element_nbr)
-		{
-			best_count = size_from - element_nbr;
-			stack_from->type = 1;
-		}
-		if (best_count > target_nb)		
-		{
-			best_count = target_nb;
-			stack_from->type = 2;
-		}
-	}
-	else
-	{
-		if (best_count > size_to - target_nb)
-		{
-			best_count = size_to - target_nb;
-			stack_from->type = 1;
-		}
-		if (best_count > size_to - target_nb)
-		{
-			best_count = element_nbr;
-			stack_from->type = 2;
-		}
-	}
-	return (best_count + 1);
+	count = find_target_b(stack_from, stack_to, top_to);
+	if (element_nbr + 1 > mediane_from || (mediane_from % 2 == 0 && element_nbr == mediane_from + 1))
+		stack_from->type = 1;
+	if (count + 1 > mediane_to || (mediane_to % 2 == 0 && element_nbr == mediane_to + 1))
+		stack_from->target->type = 1;
+	if (element_nbr + 1 < mediane_from || (mediane_from % 2 == 0 && element_nbr == mediane_from))
+		stack_from->type = 2;
+	if (count + 1 < mediane_to || (mediane_to % 2 == 0 && element_nbr == mediane_to))
+		stack_from->target->type = 2;
+	if (element_nbr + 1 == mediane_from && mediane_from % 2 == 1)
+		stack_from->type = 3;
+	if (count + 1 == mediane_to && mediane_from % 2 == 1)
+		stack_from->target->type = 3;
+	if (size_to == 2)
+		stack_from->target->type = 3;
+	if (size_from == 2)
+		stack_from->type = 3;
+	count = count_nbr(stack_from, stack_to, count, element_nbr);
+	return (count);
 }
 
 t_list	*find_cheapest_count_b(t_list *stack_from, t_list *stack_to, int size_from)
@@ -116,7 +139,9 @@ t_list	*find_cheapest_count_b(t_list *stack_from, t_list *stack_to, int size_fro
 	cheapest_count = stack_from;
 	while (element_nbr < size_from)
 	{
+		// printf("\nCHIASSE NUMBER : %lld\n", *stack_from->content);
 		count = calc_count_b(stack_from, stack_to, size_from, element_nbr);
+		// printf("CHEAPEST COUNT : %d\n", count);
 		if (!current_cheapest_count || count < current_cheapest_count)
 		{
 			current_cheapest_count = count;

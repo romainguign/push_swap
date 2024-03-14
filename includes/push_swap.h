@@ -56,4 +56,5 @@ void	sort_stack_a(t_stack *stacks);
 int		calc_mediane(t_list *stack);
 int		count_pos(t_list *stack, t_list *find);
 int		count_nbr(t_list *stack_from, t_list *stack_to, int count, int element_nbr);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:38:25 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/14 18:35:24 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/14 20:31:54 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,18 @@ void	n_elements_case(t_stack *stacks)
 		// print_stack_content(stacks);
 	}
 	three_elements_case(stacks, stacks->stack_a);
-	print_stack_content(stacks);
+	// print_stack_content(stacks);
 	size_b = ft_lstsize(stacks->stack_b);
 	while (size_b  > 0)
 	{
 		sort_stack_a(stacks);
-		print_stack_content(stacks);
+		// print_stack_content(stacks);
 		size_b--;
 	}
 	stacks->stack_b = NULL;
 	// print_stack_content(stacks);
 	final_sort(stacks);
-	print_stack_content(stacks);
+	// print_stack_content(stacks);
 }
 
 void	three_elements_case(t_stack *stacks, t_list *stack_a)

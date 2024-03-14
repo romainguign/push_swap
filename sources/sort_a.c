@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:08:37 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/14 19:24:34 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/14 20:37:59 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,55 +60,37 @@ int		find_target_a(t_list *stack_from, t_list *stack_to, t_list *top_to)
 	return (count);
 }
 
-int	calc_count_a(t_list *stack_from, t_list *stack_to, int size_from, int element_nbr)
+int		calc_count_a(t_list *stack_from, t_list *stack_to, int size_from, int element_nbr)
 {
-	int	target_nb;
+	int	count;
 	int	size_to;
+	int	mediane_from;
+	int	mediane_to;
 	t_list	*top_to;
-	int	best_count;
 
+	mediane_from = calc_mediane(stack_from);
+	mediane_to = calc_mediane(stack_to);
 	top_to = stack_to;
 	size_to = ft_lstsize(stack_to);
-	target_nb = find_target_a(stack_from, stack_to, top_to);
-	best_count = element_nbr + target_nb + 1;
-	stack_from->type = 3;
-	if (element_nbr <= target_nb)
-	{
-		if (best_count > size_from - element_nbr + 1)
-		{
-			best_count = size_from - element_nbr + 1;
-			stack_from->type = 1;
-		}
-		if (best_count > (size_to - target_nb + element_nbr + 1))
-		{
-			best_count = size_to - target_nb + element_nbr + 1;
-			stack_from->type = 1;
-		}
-		if (best_count > target_nb + 1)		
-		{
-			best_count = target_nb + 1;
-			stack_from->type = 2;
-		}
-	}
-	else
-	{
-		if (best_count > size_to - target_nb)
-		{
-			best_count = size_to - target_nb + 1;
-			stack_from->type = 1;
-		}
-		if (best_count > (size_from - element_nbr + target_nb + 1))
-		{
-			best_count = size_from - element_nbr + target_nb + 1;
-			stack_from->type = 1;
-		}
-		if (best_count > element_nbr)
-		{
-			best_count = element_nbr + 1;
-			stack_from->type = 2;
-		}
-	}
-	return (best_count);
+	count = find_target_a(stack_from, stack_to, top_to);
+	if (element_nbr + 1 > mediane_from || (mediane_from % 2 == 0 && element_nbr == mediane_from + 1))
+		stack_from->type = 1;
+	if (count + 1 > mediane_to || (mediane_to % 2 == 0 && element_nbr == mediane_to + 1))
+		stack_from->target->type = 1;
+	if (element_nbr + 1 < mediane_from || (mediane_from % 2 == 0 && element_nbr == mediane_from))
+		stack_from->type = 2;
+	if (count + 1 < mediane_to || (mediane_to % 2 == 0 && element_nbr == mediane_to))
+		stack_from->target->type = 2;
+	if (element_nbr + 1 == mediane_from && mediane_from % 2 == 1)
+		stack_from->type = 3;
+	if (count + 1 == mediane_to && mediane_from % 2 == 1)
+		stack_from->target->type = 3;
+	if (size_to == 2)
+		stack_from->target->type = 3;
+	if (size_from == 2)
+		stack_from->type = 3;
+	count = count_nbr(stack_from, stack_to, count, element_nbr);
+	return (count);
 }
 
 t_list	*find_cheapest_count_a(t_list *stack_from, t_list *stack_to, int size_from)
@@ -127,7 +109,7 @@ t_list	*find_cheapest_count_a(t_list *stack_from, t_list *stack_to, int size_fro
 	while (element_nbr < size_from)
 	{
 		count = calc_count_a(stack_from, stack_to, size_from, element_nbr);
-		printf ("%d to push %lld wich target %lld\n", count, *stack_from->content, *stack_from->target->content);
+		// printf ("%d to push %lld wich target %lld\n", count, *stack_from->content, *stack_from->target->content);
 		if (!current_cheapest_count || count < current_cheapest_count)
 		{
 			current_cheapest_count = count;
@@ -149,5 +131,8 @@ void	sort_stack_a(t_stack *stacks)
 	size_b = ft_lstsize(stacks->stack_b);
 	cheapest_element = find_cheapest_count_a(stacks->stack_b, stacks->stack_a, size_b);
 	// printf("cheapest element : %lld, target : %lld\n", *cheapest_element->content, *cheapest_element->target->content);
-	sort_and_push_a(stacks, cheapest_element);
+	if (cheapest_element != stacks->stack_a || cheapest_element->target != stacks->stack_a->target)
+		sort_and_push_a(stacks, cheapest_element);
+	else
+		pa(stacks);
 }
