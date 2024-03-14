@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:11:20 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/10 12:42:12 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:47:58 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 //////////////////////////   LIST   ////////////////////////////////
 typedef struct s_list
 {
-	void			*content;
+	int				type;
+	long long int	*content;
+	struct s_list	*target;
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_list;
 
-t_list	*ft_lstnew(void *content);
+t_list	*ft_lstnew(long long int *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
@@ -80,6 +82,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
-int		ft_lstsize(t_list *lst, t_list *first);
+int		ft_lstsize(t_list *lst);
 
 #endif

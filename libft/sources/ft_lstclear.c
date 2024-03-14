@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:55:02 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/07 19:14:46 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:28:53 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	if (!lst || !del)
 		return ;
 	start = *lst;
-	while ((*lst)->next != start)
+	while (*lst && (*lst)->next && (*lst)->next != start)
 	{
 		tmp = (*lst)->next;
 		ft_lstdelone(*lst, del);

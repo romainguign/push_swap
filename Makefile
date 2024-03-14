@@ -4,11 +4,11 @@ LIBFT			= libft/libft.a
 
 CC				= cc
 
-FLAGS 			= -Wall -Wextra -Werror
+FLAGS 			= -Wall -Wextra -Werror -g
 
 INCLUDE			= -I libft/includes -I includes
 
-LIB				= -L libft -lft 
+LIB				= -L libft -lft
 
 ##############################  COLORS  ###################################
 
@@ -29,8 +29,9 @@ SRC_DIR			= sources
 
 OBJ_DIR			= object
 
-SRC_FILES		= push_swap.c parsing.c tmp.c utils.c swap_moves.c push_moves.c
-			
+SRC_FILES		= push_swap.c parsing.c tmp.c utils.c swap_moves.c push_moves.c \
+				  rotate.c reverse_rotate.c three_element_cases.c sort_b.c sort_a.c \
+				  exec_sorting_a.c  exec_sorting_b.c
 ### rm tmp.c
 
 OBJ             = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
@@ -40,7 +41,8 @@ OBJ             = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 all: $(NAME) ascii
 
 $(NAME): $(LIBFT) $(OBJ) 
-	@$(CC) -g $(OBJ) $(LIB) $(INCLUDE) -o $(NAME) 
+	@$(CC) $(CFLAGS) $(OBJ) $(LIB) $(INCLUDE) -o $(NAME) 
+	@cp $(NAME) ./push_swap_visualizer/build/bin
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@

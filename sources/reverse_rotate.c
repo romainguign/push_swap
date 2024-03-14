@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 13:53:11 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/13 17:06:31 by roguigna         ###   ########.fr       */
+/*   Created: 2024/03/10 18:28:02 by roguigna          #+#    #+#             */
+/*   Updated: 2024/03/13 17:57:07 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstnew(long long int *content)
+void    rra(t_list **stack_a)
 {
-	t_list	*element_lst;
+	*stack_a = (*stack_a)->prev;
+	write(1, "rra\n", 4);
+}
 
-	element_lst = malloc(sizeof(t_list));
-	if (!element_lst)
-		return (0);
-	element_lst->content = content;
-	element_lst->next = NULL;
-	element_lst->prev = NULL;
-	element_lst->target = NULL;
-	element_lst->type = 0;
-	return (element_lst);
+void    rrb(t_list **stack_b)
+{
+	*stack_b = (*stack_b)->prev;
+	write(1, "rrb\n", 4);
+}
+
+void	rrr(t_list **stack_a, t_list **stack_b)
+{
+	*stack_a = (*stack_a)->prev;
+	*stack_b = (*stack_b)->prev;
+	write(1, "rrr\n", 4);
 }

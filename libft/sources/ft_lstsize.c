@@ -6,23 +6,29 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 12:22:19 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/10 13:22:01 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:22:48 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int	ft_lstsize(t_list *lst, t_list *first)
+int	ft_lstsize(t_list *lst)
 {
 	int	size;
-
+	t_list	*top;
+	t_list	*tmp;
+	
 	size = 0;
+	top = lst;
+	tmp = lst;
 	if (!lst)
 		return (0);
-	while (lst->next != first)
+	if (tmp->next == top)
+		return (1);
+	while (tmp->next != NULL && tmp->next != top)
 	{
 		size++;
-		lst = lst->next;
+		tmp = tmp->next;
 	}
 	size++;
 	return (size);

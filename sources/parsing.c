@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:51:46 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/10 15:17:55 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:59:21 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ int	parsing(t_stack **stacks, char **argv)
 		{
 			printf("Error \n");
 			ft_free_tab(args);
-			ft_lstclear(&(*stacks)->stack_a, free);
+			if((*stacks)->stack_a)
+				ft_lstclear(&(*stacks)->stack_a, free);
 			return (0);
 		}
 		while (args[j])

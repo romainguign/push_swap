@@ -6,17 +6,19 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:23:32 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/10 15:00:13 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:07:36 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_list *stack_a, t_list *top_a)
+void	sa(t_list *stack_a)
 {
 	void	*tmp;
+	t_list *top_a;
 
-	if (ft_lstsize(stack_a, top_a) < 2)
+	top_a = stack_a;
+	if (ft_lstsize(stack_a) < 2)
 		return ;
 	tmp = stack_a->content;
 	stack_a->content = stack_a->next->content;
@@ -24,20 +26,49 @@ void	sa(t_list *stack_a, t_list *top_a)
 	write(1, "sa\n", 3);
 }
 
-void	sb(t_list *stack_b, t_list *top_b)
+void	sb(t_list *stack_b)
 {
 	void	*tmp;
+	t_list *top_b;
 
-	if (ft_lstsize(stack_b, top_b) < 2)
+	top_b = stack_b;
+	if (ft_lstsize(stack_b) < 2)
 		return ;
 	tmp = stack_b->content;
 	stack_b->content = stack_b->next->content;
 	stack_b->next->content = tmp;
-	write(1, "sa\n", 3);
+	write(1, "sb\n", 3);
+}
+
+void	ss_sa(t_list *stack_a)
+{
+	void	*tmp;
+	t_list *top_a;
+
+	top_a = stack_a;
+	if (ft_lstsize(stack_a) < 2)
+		return ;
+	tmp = stack_a->content;
+	stack_a->content = stack_a->next->content;
+	stack_a->next->content = tmp;
+}
+
+void	ss_sb(t_list *stack_b)
+{
+	void	*tmp;
+	t_list *top_b;
+
+	top_b = stack_b;
+	if (ft_lstsize(stack_b) < 2)
+		return ;
+	tmp = stack_b->content;
+	stack_b->content = stack_b->next->content;
+	stack_b->next->content = tmp;
 }
 
 void	ss(t_stack *stacks)
 {
-	sa(stacks->stack_a, stacks->top_a);
-	sb(stacks->stack_b, stacks->top_b);
+	ss_sa(stacks->stack_a);
+	ss_sb(stacks->stack_b);
+	write(1, "ss\n", 3);
 }
