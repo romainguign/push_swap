@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:08:37 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/14 20:37:59 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:00:25 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,14 @@ int		calc_count_a(t_list *stack_from, t_list *stack_to, int size_from, int eleme
 	top_to = stack_to;
 	size_to = ft_lstsize(stack_to);
 	count = find_target_a(stack_from, stack_to, top_to);
-	if (element_nbr + 1 > mediane_from || (mediane_from % 2 == 0 && element_nbr == mediane_from + 1))
+	if (element_nbr + 1 > mediane_from)
 		stack_from->type = 1;
-	if (count + 1 > mediane_to || (mediane_to % 2 == 0 && element_nbr == mediane_to + 1))
+	if (count + 1 > mediane_to)
 		stack_from->target->type = 1;
-	if (element_nbr + 1 < mediane_from || (mediane_from % 2 == 0 && element_nbr == mediane_from))
+	if (element_nbr + 1 <= mediane_from)
 		stack_from->type = 2;
-	if (count + 1 < mediane_to || (mediane_to % 2 == 0 && element_nbr == mediane_to))
+	if (count + 1 <= mediane_to)
 		stack_from->target->type = 2;
-	if (element_nbr + 1 == mediane_from && mediane_from % 2 == 1)
-		stack_from->type = 3;
-	if (count + 1 == mediane_to && mediane_from % 2 == 1)
-		stack_from->target->type = 3;
 	if (size_to == 2)
 		stack_from->target->type = 3;
 	if (size_from == 2)

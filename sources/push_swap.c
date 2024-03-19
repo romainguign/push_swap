@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:38:25 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/14 20:31:54 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:33:37 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	final_sort(t_stack *stacks)
 		tmp = tmp->next;
 		count++;
 	}
-	if (count > ft_lstsize(stacks->stack_a))
+	if (count > ft_lstsize(stacks->stack_a) / 2)
 	{
 		while (stacks->stack_a != min)
 			rra(&(stacks)->stack_a);
@@ -112,6 +112,7 @@ int	main(int argc, char **argv)
 		free(stacks);
 		return (0);
 	}
+	sort_tab(stacks);
 	////////////////////PRINT
 	push_swap(stacks);
 	// test(stacks);
