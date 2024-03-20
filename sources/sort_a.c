@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:08:37 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/19 14:00:25 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:55:50 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,6 @@ int		calc_count_a(t_list *stack_from, t_list *stack_to, int size_from, int eleme
 	top_to = stack_to;
 	size_to = ft_lstsize(stack_to);
 	count = find_target_a(stack_from, stack_to, top_to);
-	if (element_nbr + 1 > mediane_from)
-		stack_from->type = 1;
-	if (count + 1 > mediane_to)
-		stack_from->target->type = 1;
-	if (element_nbr + 1 <= mediane_from)
-		stack_from->type = 2;
-	if (count + 1 <= mediane_to)
-		stack_from->target->type = 2;
-	if (size_to == 2)
-		stack_from->target->type = 3;
-	if (size_from == 2)
-		stack_from->type = 3;
 	count = count_nbr(stack_from, stack_to, count, element_nbr);
 	return (count);
 }
@@ -105,7 +93,6 @@ t_list	*find_cheapest_count_a(t_list *stack_from, t_list *stack_to, int size_fro
 	while (element_nbr < size_from)
 	{
 		count = calc_count_a(stack_from, stack_to, size_from, element_nbr);
-		// printf ("%d to push %lld wich target %lld\n", count, *stack_from->content, *stack_from->target->content);
 		if (!current_cheapest_count || count < current_cheapest_count)
 		{
 			current_cheapest_count = count;
@@ -126,7 +113,6 @@ void	sort_stack_a(t_stack *stacks)
 	size_a = ft_lstsize(stacks->stack_a);
 	size_b = ft_lstsize(stacks->stack_b);
 	cheapest_element = find_cheapest_count_a(stacks->stack_b, stacks->stack_a, size_b);
-	// printf("cheapest element : %lld, target : %lld\n", *cheapest_element->content, *cheapest_element->target->content);
 	if (cheapest_element != stacks->stack_a || cheapest_element->target != stacks->stack_a->target)
 		sort_and_push_a(stacks, cheapest_element);
 	else

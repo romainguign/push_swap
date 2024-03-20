@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 18:20:01 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/19 14:35:15 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/20 10:54:43 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	basic_sort_a(t_stack *stacks, t_list *cheapest_element)
 	top_to = stacks->stack_a;
 	top_from = stacks->stack_b;
 
-	if (cheapest_element->type == 1)
+	if (cheapest_element->type == RR)
 	{
 		while (top_to != cheapest_element->target)
 		{

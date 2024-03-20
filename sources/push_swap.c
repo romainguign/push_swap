@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:38:25 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/19 16:33:37 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:53:15 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,19 @@ void	final_sort(t_stack *stacks)
 
 void	n_elements_case(t_stack *stacks)
 {
-	int	size_a;
 	int	size_b;
-	t_list	*min;
 
-	pb(stacks);
-	pb(stacks);
-	// print_stack_content(stacks);
-	size_a = ft_lstsize(stacks->stack_a);
-	while (size_a > 3)
-	{
-		sort_stack_b(stacks);
-		size_a--;
-		// print_stack_content(stacks);
-	}
+	sort_stack_b(stacks);
 	three_elements_case(stacks, stacks->stack_a);
-	// print_stack_content(stacks);
 	size_b = ft_lstsize(stacks->stack_b);
 	while (size_b  > 0)
 	{
 		sort_stack_a(stacks);
-		// print_stack_content(stacks);
 		size_b--;
 	}
 	stacks->stack_b = NULL;
-	// print_stack_content(stacks);
 	final_sort(stacks);
-	// print_stack_content(stacks);
+	print_stack_content(stacks);
 }
 
 void	three_elements_case(t_stack *stacks, t_list *stack_a)
@@ -90,6 +76,15 @@ void	push_swap(t_stack *stacks)
 		sa(stacks->stack_a);
 	else if (ft_lstsize(stacks->stack_a) == 3)
 		three_elements_case(stacks, stacks->stack_a);
+	else if (ft_lstsize(stacks->stack_a) == 5)
+	{
+		pb(stacks);
+		pb(stacks);
+		three_elements_case(stacks, stacks->stack_a);
+		sort_stack_a(stacks);
+		sort_stack_a(stacks);
+		final_sort(stacks);
+	}
 	else
 		n_elements_case(stacks);
 }
@@ -106,13 +101,12 @@ int	main(int argc, char **argv)
 		free(stacks);
 		return (0);
 	}
-	if (is_sorted(stacks->stack_a) == 1)
+	if (is_sorted(stacks->stack_a) == 1 || find_quartile(stacks) == 0)
 	{
 		ft_lstclear(&stacks->stack_a, free);
 		free(stacks);
 		return (0);
 	}
-	sort_tab(stacks);
 	////////////////////PRINT
 	push_swap(stacks);
 	// test(stacks);

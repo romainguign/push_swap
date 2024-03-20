@@ -6,19 +6,23 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+# define RR 1
+# define R 2
+
 typedef struct s_stack
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
 	t_list	*top_a;
 	t_list	*top_b;
+	long long int		quartile[3];
 } t_stack;
 
 int				parsing(t_stack **stacks, char **argv);
+int				is_sorted(t_list *stack);
+int 			find_quartile(t_stack *stacks);
 long long int	ft_atoll(const char *nptr);
 char			**ft_free_tab(char **tab);
-int				is_sorted(t_list *stack);
-
 
 /////////////////////////////TMP
 void	print_stack_content(t_stack *stacks);

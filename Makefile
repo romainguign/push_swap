@@ -31,7 +31,7 @@ OBJ_DIR			= object
 
 SRC_FILES		= push_swap.c parsing.c tmp.c utils.c swap_moves.c push_moves.c \
 				  rotate.c reverse_rotate.c three_element_cases.c sort_b.c sort_a.c \
-				  exec_sorting_a.c  exec_sorting_b.c calc_coast.c
+				  exec_sorting_a.c  exec_sorting_b.c calc_coast.c find_quartile.c
 ### rm tmp.c
 
 OBJ             = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
