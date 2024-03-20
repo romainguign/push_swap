@@ -6,17 +6,17 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:39:04 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/13 18:13:22 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:37:40 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    biggest_first(t_stack *stacks)
+void	biggest_first(t_stack *stacks)
 {
-    if (*stacks->stack_a->next->content > *stacks->stack_a->prev->content)
+	if (*stacks->stack_a->next->content > *stacks->stack_a->prev->content)
 	{
-        sa(stacks->stack_a);
+		sa(stacks->stack_a);
 		rra(&(stacks->stack_a));
 		return ;
 	}
@@ -27,16 +27,16 @@ void    biggest_first(t_stack *stacks)
 	}
 }
 
-void    biggest_second(t_stack *stacks)
+void	biggest_second(t_stack *stacks)
 {
-    if (*stacks->stack_a->content > *stacks->stack_a->prev->content)
-    {
-        rra(&(stacks->stack_a));
-        return ;
-    }
-    else
-    {
-        sa(stacks->stack_a);
-        ra(&(stacks->stack_a));
-    }
+	if (*stacks->stack_a->content > *stacks->stack_a->prev->content)
+	{
+		rra(&(stacks->stack_a));
+		return ;
+	}
+	else
+	{
+		sa(stacks->stack_a);
+		ra(&(stacks->stack_a));
+	}
 }

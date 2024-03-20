@@ -6,17 +6,18 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:08:27 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/20 12:55:35 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:31:31 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_stack_b(t_stack *stacks)
+void	push_small_nbr(t_stack *stacks)
 {
-	int		size_a;
-	int 	i = 0;
+	int	size_a;
+	int	i;
 
+	i = 0;
 	size_a = ft_lstsize(stacks->stack_a);
 	while (size_a > i)
 	{
@@ -31,6 +32,11 @@ void	sort_stack_b(t_stack *stacks)
 			ra(&stacks->stack_a);
 		i++;
 	}
+}
+
+void	sort_stack_b(t_stack *stacks)
+{
+	push_small_nbr(stacks);
 	while (ft_lstsize(stacks->stack_a) > 3)
 	{
 		if (*stacks->stack_a->content <= stacks->quartile[2])

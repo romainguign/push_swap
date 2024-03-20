@@ -6,20 +6,21 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 18:20:01 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/20 10:54:43 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:42:16 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    rrr_sort_a(t_stack *stacks, t_list *cheapest_element)
+void	rrr_sort_a(t_stack *stacks, t_list *cheapest_element)
 {
 	t_list	*top_to;
 	t_list	*top_from;
 
 	top_to = stacks->stack_a;
 	top_from = stacks->stack_b;
-	while (stacks->stack_a && stacks->stack_b && cheapest_element != top_from && cheapest_element->target != top_to)
+	while (stacks->stack_a && stacks->stack_b && cheapest_element
+		!= top_from && cheapest_element->target != top_to)
 	{
 		rrr(&(stacks->stack_a), &(stacks->stack_b));
 		top_from = stacks->stack_b;
@@ -37,15 +38,15 @@ void    rrr_sort_a(t_stack *stacks, t_list *cheapest_element)
 	}
 }
 
-void    rr_sort_a(t_stack *stacks, t_list *cheapest_element)
+void	rr_sort_a(t_stack *stacks, t_list *cheapest_element)
 {
 	t_list	*top_to;
 	t_list	*top_from;
 
 	top_to = stacks->stack_a;
 	top_from = stacks->stack_b;
-	
-	while (stacks->stack_a && stacks->stack_b && cheapest_element != top_from && cheapest_element->target != top_to)
+	while (stacks->stack_a && stacks->stack_b && cheapest_element != top_from
+		&& cheapest_element->target != top_to)
 	{
 		rr(&(stacks->stack_a), &(stacks->stack_b));
 		top_from = stacks->stack_b;
@@ -63,6 +64,25 @@ void    rr_sort_a(t_stack *stacks, t_list *cheapest_element)
 	}
 }
 
+void	rrb_and_ra(t_stack *stacks, t_list *cheapest_element)
+{
+	t_list	*top_to;
+	t_list	*top_from;
+
+	top_to = stacks->stack_a;
+	top_from = stacks->stack_b;
+	while (top_to != cheapest_element->target)
+	{
+		ra(&(stacks->stack_a));
+		top_to = stacks->stack_a;
+	}
+	while (top_from != cheapest_element)
+	{
+		rrb(&(stacks->stack_b));
+		top_from = stacks->stack_b;
+	}
+}
+
 void	basic_sort_a(t_stack *stacks, t_list *cheapest_element)
 {
 	t_list	*top_to;
@@ -70,20 +90,8 @@ void	basic_sort_a(t_stack *stacks, t_list *cheapest_element)
 
 	top_to = stacks->stack_a;
 	top_from = stacks->stack_b;
-
 	if (cheapest_element->type == RR)
-	{
-		while (top_to != cheapest_element->target)
-		{
-			ra(&(stacks->stack_a));
-			top_to = stacks->stack_a;
-		}
-		while (top_from != cheapest_element)
-		{
-			rrb(&(stacks->stack_b));
-			top_from = stacks->stack_b;
-		}
-	}
+		rrb_and_ra(stacks, cheapest_element);
 	else
 	{
 		while (top_to != cheapest_element->target)

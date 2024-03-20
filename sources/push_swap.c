@@ -6,12 +6,11 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:38:25 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/20 12:53:15 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:28:14 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void	final_sort(t_stack *stacks)
 {
@@ -46,14 +45,13 @@ void	n_elements_case(t_stack *stacks)
 	sort_stack_b(stacks);
 	three_elements_case(stacks, stacks->stack_a);
 	size_b = ft_lstsize(stacks->stack_b);
-	while (size_b  > 0)
+	while (size_b > 0)
 	{
 		sort_stack_a(stacks);
 		size_b--;
 	}
 	stacks->stack_b = NULL;
 	final_sort(stacks);
-	print_stack_content(stacks);
 }
 
 void	three_elements_case(t_stack *stacks, t_list *stack_a)
@@ -92,7 +90,7 @@ void	push_swap(t_stack *stacks)
 int	main(int argc, char **argv)
 {
 	t_stack	*stacks;
-	
+
 	if (argc < 2)
 		return (1);
 	stacks = ft_calloc(1, sizeof(t_stack));
@@ -101,16 +99,13 @@ int	main(int argc, char **argv)
 		free(stacks);
 		return (0);
 	}
-	if (is_sorted(stacks->stack_a) == 1 || find_quartile(stacks) == 0)
+	if (is_sorted(stacks->stack_a) == 1 || find_quartile(stacks, 0) == 0)
 	{
 		ft_lstclear(&stacks->stack_a, free);
 		free(stacks);
 		return (0);
 	}
-	////////////////////PRINT
 	push_swap(stacks);
-	// test(stacks);
 	ft_lstclear(&stacks->stack_a, free);
 	free(stacks);
-	
 }

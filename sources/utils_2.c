@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 18:14:46 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/20 13:51:21 by roguigna         ###   ########.fr       */
+/*   Created: 2024/03/20 13:59:27 by roguigna          #+#    #+#             */
+/*   Updated: 2024/03/20 14:28:56 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_list **stack_a)
+t_list	*find_min(t_list	*stack)
 {
-	*stack_a = (*stack_a)->next;
-	write(1, "ra\n", 3);
-}
+	long long int	content;
+	t_list			*min;
+	t_list			*top;
 
-void	rb(t_list **stack_b)
-{
-	*stack_b = (*stack_b)->next;
-	write(1, "rb\n", 3);
-}
-
-void	rr(t_list **stack_a, t_list **stack_b)
-{
-	*stack_a = (*stack_a)->next;
-	*stack_b = (*stack_b)->next;
-	write(1, "rr\n", 3);
+	top = stack;
+	min = stack;
+	stack = stack->next;
+	while (stack->next != top->next)
+	{
+		if (*stack->content < *min->content)
+			min = stack;
+		stack = stack->next;
+	}
+	return (min);
 }

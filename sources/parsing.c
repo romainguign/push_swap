@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:51:46 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/12 14:59:21 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:36:21 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ int	check_args(char **args)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (args[i])
 	{
 		j = 0;
 		if (!ft_isdigit(args[i][j]) && (args[i][j] != '+' && args[i][j] != '-'))
-			return(0);
+			return (0);
 		j++;
-		while(args[i][j])
+		while (args[i][j])
 		{
 			if (!ft_isdigit(args[i][j]))
 				return (0);
@@ -38,7 +38,7 @@ int	check_args(char **args)
 
 int	check_double(t_stack *stacks, long long int *num)
 {
-	t_list *stack_a;
+	t_list	*stack_a;
 
 	stack_a = stacks->stack_a;
 	while (stack_a)
@@ -47,7 +47,7 @@ int	check_double(t_stack *stacks, long long int *num)
 			return (0);
 		stack_a = stack_a->next;
 	}
-	return(1);
+	return (1);
 }
 
 int	make_stack(t_stack **stacks, char **args, int j)
@@ -68,13 +68,11 @@ int	make_stack(t_stack **stacks, char **args, int j)
 	return (1);
 }
 
-int	parsing(t_stack **stacks, char **argv)
+int	pars_args(t_stack **stacks, char **argv, int i)
 {
-	int		i;
 	int		j;
 	char	**args;
 
-	i = 1;
 	while (argv[i])
 	{
 		j = 0;
@@ -83,20 +81,30 @@ int	parsing(t_stack **stacks, char **argv)
 		{
 			printf("Error \n");
 			ft_free_tab(args);
-			if((*stacks)->stack_a)
+			if ((*stacks)->stack_a)
 				ft_lstclear(&(*stacks)->stack_a, free);
 			return (0);
 		}
 		while (args[j])
 		{
 			if (make_stack(stacks, args, j) == 0)
-				return 0;
+				return (0);
 			j++;
 		}
 		ft_free_tab(args);
 		i++;
 	}
-	(*stacks)->top_a = (* stacks)->stack_a;
+	return (1);
+}
+
+int	parsing(t_stack **stacks, char **argv)
+{
+	int		i;
+
+	i = 1;
+	if (pars_args(stacks, argv, i) == 0)
+		return (0);
+	(*stacks)->top_a = (*stacks)->stack_a;
 	(*stacks)->stack_a->prev = ft_lstlast((*stacks)->stack_a);
 	(*stacks)->stack_a->prev->next = (*stacks)->top_a;
 	return (1);

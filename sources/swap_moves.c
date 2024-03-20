@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:23:32 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/11 13:07:36 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:02:01 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sa(t_list *stack_a)
 {
 	void	*tmp;
-	t_list *top_a;
+	t_list	*top_a;
 
 	top_a = stack_a;
 	if (ft_lstsize(stack_a) < 2)
@@ -29,7 +29,7 @@ void	sa(t_list *stack_a)
 void	sb(t_list *stack_b)
 {
 	void	*tmp;
-	t_list *top_b;
+	t_list	*top_b;
 
 	top_b = stack_b;
 	if (ft_lstsize(stack_b) < 2)
@@ -43,7 +43,7 @@ void	sb(t_list *stack_b)
 void	ss_sa(t_list *stack_a)
 {
 	void	*tmp;
-	t_list *top_a;
+	t_list	*top_a;
 
 	top_a = stack_a;
 	if (ft_lstsize(stack_a) < 2)
@@ -56,7 +56,7 @@ void	ss_sa(t_list *stack_a)
 void	ss_sb(t_list *stack_b)
 {
 	void	*tmp;
-	t_list *top_b;
+	t_list	*top_b;
 
 	top_b = stack_b;
 	if (ft_lstsize(stack_b) < 2)

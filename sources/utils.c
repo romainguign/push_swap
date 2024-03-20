@@ -6,13 +6,13 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:18:10 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/14 19:42:58 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:52:05 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		count_pos(t_list *stack, t_list *find)
+int	count_pos(t_list *stack, t_list *find)
 {
 	int	pos;
 
@@ -73,7 +73,7 @@ int	is_sorted(t_list *stack)
 	top = stack;
 	if (!stack)
 		return (1);
-	while(stack->next != top)
+	while (stack->next != top)
 	{
 		if (*stack->next->content < *stack->content)
 			return (0);
