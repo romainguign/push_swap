@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 14:29:28 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/21 14:25:26 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:57:10 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 # define RR 1
 # define R 2

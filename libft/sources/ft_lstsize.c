@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 12:22:19 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/14 15:22:48 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:43:59 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	size;
+	int		size;
 	t_list	*top;
 	t_list	*tmp;
-	
+
 	size = 0;
 	top = lst;
 	tmp = lst;
