@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:51:46 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/21 19:01:12 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/21 19:19:47 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ int	check_args(char **args)
 {
 	int	i;
 	int	j;
-	
 
 	i = 0;
 	while (args[i])
 	{
 		j = 0;
 		if (!ft_isdigit(args[i][j]) && (args[i][j] != '+' && args[i][j] != '-'))
-			return(0);
+			return (0);
+		if ((args[i][j] == '+' || args[i][j] == '-')
+			&& !ft_isdigit(args[i][j + 1]))
+			return (0);
 		j++;
 		while (args[i][j])
 		{
