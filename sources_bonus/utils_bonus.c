@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:18:10 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/21 13:54:24 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:22:49 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int	count_pos(t_list *stack, t_list *find)
-{
-	int	pos;
-
-	pos = 1;
-	while (stack != find)
-	{
-		stack = stack->next;
-		pos++;
-	}
-	return (pos);
-}
+#include "push_swap_bonus.h"
 
 char	**ft_free_tab(char **tab)
 {
@@ -66,13 +53,13 @@ long long int	ft_atoll(const char *nptr)
 	return (nbr);
 }
 
-int	is_sorted(t_list *stack)
+int	is_sorted(t_list *stack, int len_a)
 {
 	t_list	*top;
 
 	top = stack;
-	if (!stack)
-		return (1);
+	if (!stack || ft_lstsize(stack) != len_a)
+		return (0);
 	while (stack->next != top)
 	{
 		if (*stack->next->content < *stack->content)
@@ -82,14 +69,11 @@ int	is_sorted(t_list *stack)
 	return (1);
 }
 
-int	calc_mediane(t_list *stack)
+void	free_stacks(t_stack *stacks, int len_a)
 {
-	int	size;
-	int	mediane;
-
-	if (!stack)
-		return (0);
-	size = ft_lstsize(stack);
-	mediane = size / 2 + size % 2;
-	return (mediane);
+	while (len_a != ft_lstsize(stacks->stack_a))
+		pa(stacks);
+	if (stacks->stack_a)
+		ft_lstclear(&stacks->stack_a, free);
+	free(stacks);
 }

@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 13:59:27 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/21 14:20:41 by roguigna         ###   ########.fr       */
+/*   Created: 2024/03/10 18:28:02 by roguigna          #+#    #+#             */
+/*   Updated: 2024/03/20 17:06:04 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-t_list	*find_min(t_list	*stack)
+void	rra(t_list **stack_a)
 {
-	long long int	content;
-	t_list			*min;
-	t_list			*top;
+	if (stack_a && *stack_a)
+		*stack_a = (*stack_a)->prev;
+}
 
-	top = stack;
-	min = stack;
-	stack = stack->next;
-	while (stack->next != top->next)
-	{
-		if (*stack->content < *min->content)
-			min = stack;
-		stack = stack->next;
-	}
-	return (min);
+void	rrb(t_list **stack_b)
+{
+	if (stack_b && *stack_b)
+		*stack_b = (*stack_b)->prev;
+}
+
+void	rrr(t_list **stack_a, t_list **stack_b)
+{
+	if (stack_a && *stack_a)
+		*stack_a = (*stack_a)->prev;
+	if (stack_b && *stack_b)
+		*stack_b = (*stack_b)->prev;
 }
