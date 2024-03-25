@@ -6,7 +6,7 @@ LIBFT			= libft/libft.a
 
 CC				= cc
 
-FLAGS 			= -Wall -Wextra -Werror -g
+CFLAGS 			= -Wall -Wextra -Werror -g
 
 INCLUDE			= -I libft/includes -I includes
 

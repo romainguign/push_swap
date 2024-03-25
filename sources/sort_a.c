@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:08:37 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/20 14:01:10 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:33:41 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	target_pos(t_list *stack_from, t_list *top_to)
 int	find_target_a(t_list *stack_from, t_list *stack_to, t_list *top_to)
 {
 	int		count;
-	int		near_content;
 	int		target_content;
 	t_list	*min;
 	t_list	*top_from;
@@ -53,8 +52,7 @@ int	find_target_a(t_list *stack_from, t_list *stack_to, t_list *top_to)
 	return (count);
 }
 
-int	calc_count_a(t_list *stack_from, t_list *stack_to,
-	int size_from, int element_nbr)
+int	calc_count_a(t_list *stack_from, t_list *stack_to, int element_nbr)
 {
 	int		count;
 	int		size_to;
@@ -87,7 +85,7 @@ t_list	*find_cheapest_count_a(t_list *stack_from, t_list *stack_to,
 	cheapest_count = stack_from;
 	while (element_nbr < size_from)
 	{
-		count = calc_count_a(stack_from, stack_to, size_from, element_nbr);
+		count = calc_count_a(stack_from, stack_to, size_from);
 		if (!current_cheapest_count || count < current_cheapest_count)
 		{
 			current_cheapest_count = count;

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:38:25 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/21 15:15:45 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:37:26 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (1);
 	stacks = ft_calloc(1, sizeof(t_stack));
+	if (!stacks)
+		return (1);
 	if (!parsing(&stacks, argv))
 	{
 		free(stacks);
